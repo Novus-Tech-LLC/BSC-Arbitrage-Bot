@@ -1,0 +1,167 @@
+# Claude Pro Max API Configuration
+claude:
+  api_key: ${CLAUDE_API_KEY}  # Set in .env file
+  model: "claude-3-5-sonnet-20241022"  # Latest model
+  temperature: 0.7
+  max_tokens: 4096
+  
+# Analysis Configuration  
+analysis:
+  # How often to run deep analysis (in seconds)
+  scan_interval: 60  # Every minute
+  
+  # Number of tokens to analyze per scan
+  batch_size: 10
+  
+  # Minimum score thresholds
+  thresholds:
+    narrative_score: 70
+    pump_score: 60
+    combined_score: 65
+    
+  # Risk limits
+  risk_limits:
+    max_risk_level: "HIGH"  # Won't trade VERY HIGH or EXTREME
+    max_volume_mc_ratio: 1.5
+    min_liquidity: 10000
+    
+# Investment Strategy
+investment:
+  # Position sizing
+  position_size_usd: 1000
+  max_positions: 5
+  
+  # Entry rules
+  entry_rules:
+    - pump_phase: ["accumulation", "initial_pump"]
+    - narrative_strength: ["explosive", "high"]
+    - volume_check: true
+    - liquidity_check: true
+    
+  # Exit rules  
+  exit_rules:
+    stop_loss_percent: -15
+    take_profit_percent: 50
+    trailing_stop_percent: 10
+    pump_phase_exit: ["distribution", "dump"]
+    
+# Claude Analysis Prompts
+prompts:
+  # Main analysis prompt
+  market_analysis: |
+    You are an elite crypto trader analyzing BSC memecoins. 
+    
+    Token Data:
+    {token_data}
+    
+    Recent Price Action:
+    {price_history}
+    
+    Current Market Sentiment:
+    {market_sentiment}
+    
+    Analyze this token for:
+    1. Narrative strength and viral potential
+    2. Pump phase detection (accumulation/pump/distribution/dump)
+    3. Volume analysis for wash trading
+    4. Entry/exit recommendations
+    5. Risk assessment
+    6. HOLDING STRATEGY - Determine if this is a scalp (2-8hr), swing (1-2 days), or hold (3-5 days)
+    
+    Be extremely critical. Look for red flags like:
+    - Volume exceeding market cap (wash trading)
+    - Sudden coordinated pumps
+    - Weak or forced narratives
+    - Distribution patterns
+    
+    For holding strategy consider:
+    - Strong AI/Tech narratives = longer holds (3-5 days)
+    - Binance/Exchange ecosystem plays = medium-long holds (2-4 days)  
+    - Redemption arcs (2.0, reborn) = swing trades (1-2 days)
+    - Pure volume pumps = quick scalps (2-8 hours)
+    - Weak narratives = exit quickly on any pump
+    
+    Provide a JSON response with:
+    {
+      "should_invest": boolean,
+      "confidence": 0-100,
+      "narrative_score": 0-100,
+      "pump_phase": "string",
+      "risk_level": "LOW|MEDIUM|HIGH|VERY_HIGH|EXTREME",
+      "entry_price": number or null,
+      "stop_loss": number or null,
+      "take_profit": [array of targets],
+      "recommended_strategy": "scalp|swing|hold",
+      "target_hold_hours": number,
+      "reasoning": "detailed explanation",
+      "warnings": [array of warnings]
+    }
+    
+  # Quick opportunity scan
+  opportunity_scan: |
+    Quick scan these tokens for immediate opportunities:
+    {tokens_list}
+    
+    Identify the top 3 with:
+    - Best narrative potential
+    - Early pump phase
+    - Low manipulation risk
+    
+    Focus on tokens similar to successful pumps like DUST, PRICELESS.
+    
+  # Exit analysis
+  exit_analysis: |
+    Analyze current position for exit:
+    
+    Token: {token}
+    Entry: ${entry_price}
+    Current: ${current_price}
+    P&L: {pnl_percent}%
+    Time held: {time_held}
+    
+    Current market data:
+    {market_data}
+    
+    Should we:
+    1. Hold for more gains
+    2. Take profits now
+    3. Cut losses
+    
+    Consider pump phase, volume patterns, and narrative exhaustion.
+    
+# Alert Configuration
+alerts:
+  # Send alerts for these events
+  triggers:
+    - new_opportunity: true
+    - enter_position: true
+    - exit_position: true
+    - high_risk_warning: true
+    - narrative_shift: true
+    
+  # Alert channels (future expansion)
+  channels:
+    - console: true
+    - dashboard: true
+    # - telegram: "@your_channel"
+    # - discord: "webhook_url"
+    
+# Advanced Features
+advanced:
+  # Pattern recognition
+  patterns:
+    - dust_pattern: true  # 2x volume/MC wash trading
+    - cz_narrative: true  # Binance/CZ related pumps
+    - fomo_cascade: true  # Rapid successive pumps
+    
+  # Multi-source analysis
+  data_sources:
+    - dexscreener: true
+    - social_media: false  # Future: Twitter/Telegram
+    - on_chain: false     # Future: Holder analysis
+    
+  # Learning mode
+  learning:
+    track_performance: true
+    save_successful_patterns: true
+    adjust_thresholds: false  # Manual adjustment for now

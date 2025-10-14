@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$BRIDGE Trading Bot Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="logo">$BRIDGE</span> TRADING BOT v1.0</h1>
+            <div class="status-bar">
+                <div class="status-item">
+                    <span class="label">STATUS:</span>
+                    <span id="bot-status" class="value">OFFLINE</span>
+                </div>
+                <div class="status-item">
+                    <span class="label">MODE:</span>
+                    <span id="bot-mode" class="value">PAPER</span>
+                </div>
+                <div class="status-item">
+                    <span class="label">CHAIN:</span>
+                    <span class="value">BSC</span>
+                </div>
+                <div class="controls">
+                    <button id="start-btn" class="btn btn-start">START BOT</button>
+                    <button id="stop-btn" class="btn btn-stop" disabled>STOP BOT</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-grid">
+            <!-- Treasury Stats -->
+            <div class="panel treasury-panel">
+                <h2>TREASURY STATS</h2>
+                <div class="treasury-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">BALANCE</span>
+                        <span id="balance" class="stat-value">$10,000.00</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">TOTAL P&L</span>
+                        <span id="total-pnl" class="stat-value">$0.00</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">WIN RATE</span>
+                        <span id="win-rate" class="stat-value">0%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">TRADES</span>
+                        <span id="trades-count" class="stat-value">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trending Tokens -->
+            <div class="panel trending-panel">
+                <h2>BSC TRENDING TOKENS</h2>
+                <div class="table-wrapper">
+                    <table id="trending-table">
+                        <thead>
+                            <tr>
+                                <th>TOKEN</th>
+                                <th>PRICE</th>
+                                <th>24H %</th>
+                                <th>VOLUME</th>
+                                <th>LINKS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="trending-tbody">
+                            <tr><td colspan="5" class="no-data">Waiting for data...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Open Positions -->
+            <div class="panel positions-panel">
+                <h2>OPEN POSITIONS</h2>
+                <div class="table-wrapper">
+                    <table id="positions-table">
+                        <thead>
+                            <tr>
+                                <th>TOKEN</th>
+                                <th>ENTRY</th>
+                                <th>CURRENT</th>
+                                <th>P&L</th>
+                                <th>P&L %</th>
+                            </tr>
+                        </thead>
+                        <tbody id="positions-tbody">
+                            <tr><td colspan="5" class="no-data">No open positions</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Trade History -->
+            <div class="panel trades-panel">
+                <h2>TRADE HISTORY</h2>
+                <div class="table-wrapper">
+                    <table id="trades-table">
+                        <thead>
+                            <tr>
+                                <th>TIME</th>
+                                <th>TYPE</th>
+                                <th>TOKEN</th>
+                                <th>PRICE</th>
+                                <th>USD</th>
+                                <th>P&L</th>
+                            </tr>
+                        </thead>
+                        <tbody id="trades-tbody">
+                            <tr><td colspan="6" class="no-data">No trades yet</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Activity Feed -->
+            <div class="panel activity-panel">
+                <h2>ACTIVITY FEED</h2>
+                <div id="activity-feed" class="activity-feed">
+                    <div class="activity-item">[SYSTEM] Bot initialized. Ready to scan BSC tokens...</div>
+                </div>
+            </div>
+
+            <!-- AI Agent Thinking Log -->
+            <div class="panel ai-thinking-panel">
+                <h2>🤖 AI AGENT THINKING</h2>
+                <div id="ai-thinking-log" class="ai-thinking-log">
+                    <div class="thinking-item">
+                        <span class="thinking-time">00:00:00</span>
+                        <span class="thinking-agent">[SYSTEM]</span>
+                        <span class="thinking-message">AI agents ready to analyze BSC tokens...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Analysis Panel -->
+            <div class="panel analysis-panel" style="grid-column: 1 / -1;">
+                <h2>AI ANALYSIS PLAYS</h2>
+                <div class="analysis-header">
+                    <span>Click on any analysis card to expand details</span>
+                </div>
+                <div id="analysis-cards" class="analysis-cards">
+                    <!-- Analysis cards will be populated here -->
+                </div>
+            </div>
+
+            <!-- DexScreener Research -->
+            <div class="panel research-panel" style="grid-column: 1 / -1;">
+                <h2>DEXSCREENER VOLUME BLAST RESEARCH</h2>
+                <div class="research-header">
+                    <span>Hourly analysis of coins with explosive volume (like DUST, PRICELESS, ODIN)</span>
+                    <span id="next-research" class="countdown">Next scan: --:--</span>
+                </div>
+                <div id="research-reports" class="research-reports">
+                    <div class="no-data">Research reports will appear here...</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <span>$BRIDGE Token Launch Demo | Berkeley CS | </span>
+                <span class="timestamp" id="timestamp">00:00:00</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
