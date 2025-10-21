@@ -117,7 +117,7 @@ See `CONTRIBUTING.md` for contribution guidelines. In short:
 | 📲 WhatsApp | [wa.me/14105015750](https://wa.me/14105015750) |
 | 💬 Discord | [discordapp.com/users/985432160498491473](https://discordapp.com/users/985432160498491473)
 
-<div align="center">
+<div align="left">
     <a href="https://t.me/novustch" target="_blank"><img alt="Telegram"
         src="https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white"/></a>
     <a href="https://wa.me/14105015750" target="_blank"><img alt="WhatsApp"
@@ -125,5 +125,5 @@ See `CONTRIBUTING.md` for contribution guidelines. In short:
     <a href="https://discordapp.com/users/985432160498491473" target="_blank"><img alt="Discord"
         src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white"/></a>
 </div>
-
+</br>
 For commercial support or custom integrations, contact Novus Tech LLC.
